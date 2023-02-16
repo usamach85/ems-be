@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Azure;
 using Interview.Database;
 using Interview.Database.Models;
 using InterviewTest.Applciation.Interface;
