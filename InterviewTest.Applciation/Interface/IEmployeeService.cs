@@ -14,7 +14,7 @@ namespace InterviewTest.Applciation.Interface
     {
         Task<EmployeeResponseDTO> AddOrUpdate(CreateOrUpdateEmployeeRequest model);
         Task<bool> Delete(int id);
-        Task<List<EmployeeResponseDTO>> GetAllEmployees(string search);
+        Task<List<EmployeeResponseDTO>> GetAllEmployees(string? search);
         Task<EmployeeResponseDTO> GetSingle(int id);
     }
 }

@@ -35,7 +35,7 @@ namespace InterviewTest.Tests
         public void GetAll()
         {
             // Arrange
-            string search = "all";
+            string? search = null;
             // Act
             var result = _controller.GetAllEmployees(search);
 

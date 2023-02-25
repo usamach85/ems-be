@@ -7,6 +7,7 @@ using InterviewTest.Applciation.RequesDTO.Employee;
 using InterviewTest.Applciation.ResponseDTO;
 using InterviewTest.Applciation.ResponseDTO.Employee;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,11 +64,11 @@ namespace InterviewTest.Applciation.Services
             return false;
         }
 
-        public async Task<List<EmployeeResponseDTO>> GetAllEmployees(string search)
-        {
+        public async Task<List<EmployeeResponseDTO>> GetAllEmployees(string? search)
+       {
             var emplList =new List<EmployeeResponseDTO>();
             var response = await _context.Employee.ToListAsync();
-            if (search.Equals("all"))
+            if (search.IsNullOrEmpty())
             {
                 return _mapper.Map<List<EmployeeResponseDTO>>(response);
             }
@@ -85,36 +86,6 @@ namespace InterviewTest.Applciation.Services
                                   DateOfBirth = ds.DateOfBirth,
                               }).ToListAsync();
             return emplList;
-            //if (!(string.IsNullOrEmpty(name)) || !(string.IsNullOrEmpty(email)) || !(string.IsNullOrEmpty(department))) {
-            //    emplList= await (from ds in _context.Employee.AsQueryable()
-            //            .Where(ds =>
-            //     ds.Name.Contains(name) ||
-            //     ds.Email.Contains(email) ||
-            //     ds.Department.Contains(department))
-            //           select new EmployeeResponseDTO
-            //           {
-            //               Id = ds.Id,
-            //               Name = ds.Name,
-            //               Email = ds.Email,
-            //               Department = ds.Department,
-            //               DateOfBirth = ds.DateOfBirth,
-            //           }).ToListAsync();
-            //    return emplList;
-            //}
-            //else
-            //{
-            //    emplList = await (from ds in _context.Employee.AsQueryable()
-            //                      select new EmployeeResponseDTO
-            //                      {
-            //                          Id = ds.Id,
-            //                          Name = ds.Name,
-            //                          Email = ds.Email,
-            //                          Department = ds.Department,
-            //                          DateOfBirth = ds.DateOfBirth,
-            //                      }).ToListAsync();
-            //    return emplList;
-
-            //}
 
         }
 
@@ -127,10 +98,6 @@ namespace InterviewTest.Applciation.Services
                 return response;
             }
             return null;
-            //else
-            //{
-            //    return EmployeeResponseDTO emp=new EmployeeResponseDTO();
-            //}
         }
     }
 }

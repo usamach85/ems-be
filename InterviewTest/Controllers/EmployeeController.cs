@@ -22,7 +22,7 @@ namespace InterviewTest.Api.Controllers
             return SendResponse(response);
         }
         [HttpGet("GetAllEmployees")]
-        public async Task<IActionResult> GetAllEmployees(string search)
+        public async Task<IActionResult> GetAllEmployees([FromQuery] string? search)
         {
             var response = await _employeeService.GetAllEmployees(search);
             return SendResponse(response);
